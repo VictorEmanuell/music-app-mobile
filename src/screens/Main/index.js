@@ -17,63 +17,63 @@ import LibraryIconFocused from '../../assets/Icons/library-focused.svg';
 const Tab = createBottomTabNavigator();
 
 export function Main() {
-    return (
-        <Tab.Navigator
-            screenOptions={{
-                tabBarShowLabel: false,
-                headerShown: false,
-                tabBarStyle: {
-                    borderTopWidth: 0,
-                    backgroundColor: Colors.primary,
-                    height: 65
-                },
-            }}
-        >
-            <Tab.Screen
-                name="Home"
-                component={Home}
-                options={{
-                    tabBarIcon: ({ focused }) => {
-                        if (!focused) {
-                            return <HomeIcon />
-                        }
+	return (
+		<Tab.Navigator
+			screenOptions={{
+				tabBarShowLabel: false,
+				headerShown: false,
+				tabBarStyle: {
+					borderTopWidth: 0,
+					backgroundColor: Colors.primary,
+					height: 65,
+				},
+			}}
+		>
+			<Tab.Screen
+				name="Home"
+				component={Home}
+				options={{
+					tabBarIcon: ({ focused }) => {
+						if (!focused) {
+							return <HomeIcon />;
+						}
 
-                        if (focused) {
-                            return <HomeIconFocused />
-                        }
-                    }
-                }}
-            />
-            <Tab.Screen
-                name="Search"
-                component={Search}
-                options={{
-                    tabBarIcon: ({ focused }) => {
-                        if (!focused) {
-                            return <SearchIcon />
-                        }
+						if (focused) {
+							return <HomeIconFocused />;
+						}
+					},
+				}}
+			/>
+			<Tab.Screen
+				name="Search"
+				component={Search}
+				options={{
+					tabBarIcon: ({ focused }) => {
+						if (!focused) {
+							return <SearchIcon />;
+						}
 
-                        if (focused) {
-                            return <SearchIconFocused />
-                        }
-                    }
-                }}
-            />
-            <Tab.Screen
-                name="Library"
-                component={Library}
-                options={{
-                    tabBarIcon: ({ focused }) => {
-                        if (!focused) {
-                            return <LibraryIcon />
-                        }
+						if (focused) {
+							return <SearchIconFocused />;
+						}
+					},
+				}}
+			/>
+			<Tab.Screen
+				name="Library"
+				component={Library}
+				options={{
+					tabBarIcon: ({ focused }) => {
+						if (!focused) {
+							return <LibraryIcon />;
+						}
 
-                        if (focused) {
-                            return <LibraryIconFocused />
-                        }
-                    }
-                }}
-            />
-        </Tab.Navigator>
-    );
+						if (focused) {
+							return <LibraryIconFocused />;
+						}
+					},
+				}}
+			/>
+		</Tab.Navigator>
+	);
 }

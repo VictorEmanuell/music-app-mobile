@@ -1,5 +1,4 @@
 import { View, TouchableOpacity, Text, StatusBar } from 'react-native';
-import SystemNavigationBar from 'react-native-system-navigation-bar';
 
 import { MiniPlayer } from '../../../components/MiniPlayer';
 
