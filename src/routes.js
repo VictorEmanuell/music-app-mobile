@@ -23,7 +23,7 @@ export default function Routes() {
 					name="Main"
 					component={Main}
 					options={{
-						animation: 'slide_from_right',
+						//animation: 'slide_from_right',
 						navigationBarColor: Colors.primary,
 					}}
 				/>
@@ -31,7 +31,7 @@ export default function Routes() {
 					name="Player"
 					component={Player}
 					options={{
-						animation: 'slide_from_bottom',
+						//animation: 'slide_from_bottom',
 						navigationBarColor: Colors.background,
 					}}
 				/>

@@ -70,7 +70,7 @@ export function Queue({ modalizeRef, currentIndex }) {
 									style={styles.imageCover}
 									resizeMode="cover"
 									source={!item.artwork ? ImageLoad : { uri: item.artwork }}
-									loadingIndicatorSource={ImageLoad}
+									// loadingIndicatorSource={ImageLoad}
 								/>
 							</View>
 

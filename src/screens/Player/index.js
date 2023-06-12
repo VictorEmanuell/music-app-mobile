@@ -4,6 +4,7 @@ import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-na
 import TrackPlayer, { useTrackPlayerEvents, useProgress, Event } from 'react-native-track-player';
 import { Slider } from '@miblanchard/react-native-slider';
 import ContentLoader from 'react-native-easy-content-loader';
+import MarqueeText from 'react-native-marquee';
 
 import { styles } from './styles';
 import Colors from '../../assets/Colors';
@@ -117,14 +118,14 @@ export function Player({ navigation }) {
 				</TouchableOpacity>
 			</View>
 
-			<View style={styles.containerImageCover}>
+			<Animated.View sharedTransitionTag="imageCoverTransition" style={styles.containerImageCover}>
 				<Image
 					style={styles.imageCover}
 					resizeMode="cover"
 					source={!track.artwork ? ImageLoad : { uri: track.artwork }}
 					loadingIndicatorSource={ImageLoad}
 				/>
-			</View>
+			</Animated.View>
 
 			<View style={styles.musicInfos}>
 				<View style={styles.titleAndArtist}>
@@ -137,9 +138,15 @@ export function Player({ navigation }) {
 						primaryColor="#3B3F44"
 						secondaryColor="#41464B"
 					>
-						<Text style={styles.textTitle} numberOfLines={1}>
+						<MarqueeText
+							style={styles.textTitle}
+							speed={0.3}
+							marqueeOnStart={true}
+							loop={true}
+							delay={2000}
+						>
 							{track.title}
-						</Text>
+						</MarqueeText>
 					</ContentLoader>
 
 					<ContentLoader
@@ -151,7 +158,9 @@ export function Player({ navigation }) {
 						primaryColor="#3B3F44"
 						secondaryColor="#41464B"
 					>
-						<Text style={styles.textArtist}>{track.artist}</Text>
+						<Text style={styles.textArtist} numberOfLines={1}>
+							{track.artist}
+						</Text>
 					</ContentLoader>
 				</View>
 

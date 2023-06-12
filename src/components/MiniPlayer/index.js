@@ -10,6 +10,7 @@ import {
 import TrackPlayer, { useTrackPlayerEvents, Event } from 'react-native-track-player';
 import ContentLoader from 'react-native-easy-content-loader';
 import MarqueeText from 'react-native-marquee';
+import Animated from 'react-native-reanimated';
 
 import { styles } from './styles';
 
@@ -67,14 +68,14 @@ export function MiniPlayer({ navigation }) {
 			}}
 		>
 			<View style={styles.containerMiniPlayer}>
-				<View style={styles.containerImageCover}>
+				<Animated.View sharedTransitionTag="imageCoverTransition" style={styles.containerImageCover}>
 					<Image
 						style={styles.imageCover}
 						resizeMode="cover"
 						source={!track.artwork ? ImageLoad : { uri: track.artwork }}
 						loadingIndicatorSource={ImageLoad}
 					/>
-				</View>
+				</Animated.View>
 
 				<View style={styles.musicInfos}>
 					<View style={styles.titleAndArtist}>
@@ -89,10 +90,10 @@ export function MiniPlayer({ navigation }) {
 						>
 							<MarqueeText
 								style={styles.textTitle}
-								speed={1}
+								speed={0.3}
 								marqueeOnStart={true}
 								loop={true}
-								delay={1000}
+								delay={2000}
 							>
 								{track.title}
 							</MarqueeText>
@@ -107,15 +108,9 @@ export function MiniPlayer({ navigation }) {
 							primaryColor="#3B3F44"
 							secondaryColor="#41464B"
 						>
-							<MarqueeText
-								style={styles.textArtist}
-								speed={1}
-								marqueeOnStart={true}
-								loop={true}
-								delay={1000}
-							>
+							<Text style={styles.textArtist} numberOfLines={1}>
 								{track.artist}
-							</MarqueeText>
+							</Text>
 						</ContentLoader>
 					</View>
 				</View>
