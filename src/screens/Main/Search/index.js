@@ -1,13 +1,18 @@
 import React from 'react';
-import { View, TouchableOpacity } from 'react-native';
+import { View, TouchableOpacity, TextInput, Keyboard, ScrollView } from 'react-native';
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 
-import { styles } from './styles';
-import { MiniPlayer } from '../../../components/MiniPlayer';
-import Colors from '../../../assets/Colors';
+import SearchIconFocused from '../../../assets/Icons/search-focused.svg';
 
-export function Search({ navigation }) {
+import { MiniPlayer } from '../../../components/MiniPlayer';
+import { TabNavigatorContainer } from '../../../components/TabNavigator';
+
+import Colors from '../../../assets/Colors';
+import { styles } from './styles';
+
+export function Search({ navigation, route }) {
 	const [focused, setFocused] = React.useState(false);
+	const inputSearch = React.useRef();
 
 	const searchBoxMarginHorizontal = useSharedValue(20);
 	const searchBoxMarginVertical = useSharedValue(30);
@@ -35,12 +40,25 @@ export function Search({ navigation }) {
 		}
 	}, [focused]);
 
+	React.useEffect(() => {
+		const hideSubscription = Keyboard.addListener('keyboardDidHide', () => {
+			inputSearch.current.blur();
+			setFocused(false);
+		});
+
+		return () => {
+			hideSubscription.remove();
+		};
+	}, []);
+
 	return (
-		<View style={styles.container}>
+		<TabNavigatorContainer screen={route.name}>
 			<Animated.View
 				style={[
 					{
-						padding: 30,
+						flexDirection: 'row',
+						alignItems: 'center',
+						padding: 5,
 						backgroundColor: Colors.secondary,
 					},
 					useAnimatedStyle(() => {
@@ -53,15 +71,22 @@ export function Search({ navigation }) {
 						};
 					}),
 				]}
-			></Animated.View>
+			>
+				<SearchIconFocused width={18} style={{marginHorizontal: 8}} />
 
-			<TouchableOpacity
-				activeOpacity={0.5}
-				onPress={() => setFocused(!focused)}
-				style={{ width: 150, height: 40, backgroundColor: 'red', top: 300 }}
-			/>
+				<TextInput
+					ref={inputSearch}
+					onFocus={() => {
+						setFocused(true);
+					}}
+					placeholder="pesquisar"
+					placeholderTextColor={'#FFFFFF50'}
+					cursorColor={'#FFFFFF50'}
+					style={styles.inputTextSearch}
+				/>
+			</Animated.View>
 
 			<MiniPlayer navigation={navigation} />
-		</View>
+		</TabNavigatorContainer>
 	);
 }

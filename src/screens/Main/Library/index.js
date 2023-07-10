@@ -1,13 +1,14 @@
 import { View } from 'react-native';
 
-import { styles } from './styles';
 import { MiniPlayer } from '../../../components/MiniPlayer';
+import { TabNavigatorContainer } from '../../../components/TabNavigator';
 
-export function Library({ navigation }) {
-  return (
-    <View style={styles.container}>
+import { styles } from './styles';
 
-      <MiniPlayer navigation={navigation} />
-    </View>
-  );
+export function Library({ navigation, route }) {
+	return (
+		<TabNavigatorContainer screen={route.name}>
+			<MiniPlayer navigation={navigation} />
+		</TabNavigatorContainer>
+	);
 }
