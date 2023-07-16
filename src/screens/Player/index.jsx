@@ -100,7 +100,7 @@ export function Player({ navigation, route }) {
 			<View style={styles.container}>
 				<View style={styles.header}>
 					<TouchableOpacity
-						// style={{transform: [{ rotate: '-90deg'}]}}
+						style={{transform: [{ rotate: '-90deg'}]}}
 						activeOpacity={0.8}
 						onPress={() => {
 							Vibration.vibrate(20);

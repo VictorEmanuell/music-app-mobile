@@ -62,7 +62,7 @@ export default function Routes() {
 					options={{
 						animation: 'slide_from_bottom',
 						navigationBarColor: Colors.background,
-						animationDuration: 200,
+						animationDuration: 100,
 					}}
 				/>
 			</Stack.Navigator>

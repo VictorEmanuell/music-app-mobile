@@ -13,5 +13,6 @@ export const styles = StyleSheet.create({
 		fontFamily: Fonts.regular,
 		fontSize: 20,
 		top: -3,
+		flex: 1
 	},
 });
